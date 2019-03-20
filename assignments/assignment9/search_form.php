@@ -1,6 +1,16 @@
 <?php
+	// Establish DB connection
+	$host = "303.itpwebdev.com";
+	$user = "vannieke_db_user";
+	$pass = "BigHac%1996";
+	$db = "vannieke_dvd_db";
 
+	$mysqli = new mysqli($host, $user, $pass, $db);
 
+	if ($mysqli->connect_errno) {
+		echo "MySQL Connection Error: " . $mysqli->connect_errno;
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,6 +51,24 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Genre dropdown options here -->
+						<?php
+							$sql = "SELECT genre FROM genres";
+							$results = $mysqli->query($sql);
+
+							if (!$results) {
+								echo "SQL Error: " . $mysqli->error;
+								exit();
+							}
+
+							while ($row = $results->fetch_assoc()) :
+						?>
+
+						<option value="<?php echo $row["genre"]; ?>"><?php echo $row["genre"]; ?></option>
+
+						<?php 
+							$i++; 
+							endwhile; 
+						?>
 
 					</select>
 				</div>
@@ -52,6 +80,24 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Rating dropdown options here -->
+						<?php
+							$sql = "SELECT rating FROM ratings";
+							$results = $mysqli->query($sql);
+
+							if (!$results) {
+								echo "SQL Error: " . $mysqli->error;
+								exit();
+							}
+
+							while ($row = $results->fetch_assoc()) :
+						?>
+
+						<option value="<?php echo $row["rating"]; ?>"><?php echo $row["rating"]; ?></option>
+
+						<?php 
+							$i++; 
+							endwhile; 
+						?>
 
 					</select>
 				</div>
@@ -63,6 +109,24 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Label dropdown options here -->
+						<?php
+							$sql = "SELECT label FROM labels";
+							$results = $mysqli->query($sql);
+
+							if (!$results) {
+								echo "SQL Error: " . $mysqli->error;
+								exit();
+							}
+
+							while ($row = $results->fetch_assoc()) :
+						?>
+
+						<option value="<?php echo $row["label"]; ?>"><?php echo $row["label"]; ?></option>
+
+						<?php 
+							$i++; 
+							endwhile; 
+						?>
 
 					</select>
 				</div>
@@ -74,6 +138,24 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Format dropdown options here -->
+						<?php
+							$sql = "SELECT format FROM formats";
+							$results = $mysqli->query($sql);
+
+							if (!$results) {
+								echo "SQL Error: " . $mysqli->error;
+								exit();
+							}
+
+							while ($row = $results->fetch_assoc()) :
+						?>
+
+						<option value="<?php echo $row["format"]; ?>"><?php echo $row["format"]; ?></option>
+
+						<?php 
+							$i++; 
+							endwhile; 
+						?>
 
 					</select>
 				</div>
@@ -85,7 +167,24 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Sound dropdown options here -->
-						
+						<?php
+							$sql = "SELECT sound FROM sounds";
+							$results = $mysqli->query($sql);
+
+							if (!$results) {
+								echo "SQL Error: " . $mysqli->error;
+								exit();
+							}
+
+							while ($row = $results->fetch_assoc()) :
+						?>
+
+						<option value="<?php echo $row["sound"]; ?>"><?php echo $row["sound"]; ?></option>
+
+						<?php 
+							$i++; 
+							endwhile; 
+						?>
 
 					</select>
 				</div>

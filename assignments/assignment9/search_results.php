@@ -1,7 +1,16 @@
 <?php
+	// Establish DB connection
+	$host = "303.itpwebdev.com";
+	$user = "vannieke_db_user";
+	$pass = "BigHac%1996";
+	$db = "vannieke_dvd_db";
 
+	$mysqli = new mysqli($host, $user, $pass, $db);
 
-
+	if ($mysqli->connect_errno) {
+		echo "MySQL Connection Error: " . $mysqli->connect_errno;
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html>
