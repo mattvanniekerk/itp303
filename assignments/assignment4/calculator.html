@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+	<style>
+		#display {
+			font-size: 2em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1 class="col-12 text-center mt-5">JS Calculator</h1>
+		</div> <!-- .row -->
+		<div class="row">
+			<div id="calculator" class="mt-4 col-12 col-md-6 ml-md-auto mr-md-auto col-lg-4">
+				<div class="row">
+					<input type="text" id="display" class="col-12 text-right form-control" value="OFF" disabled>
+				</div> <!-- .row -->
+				<div class="row">
+					<button class="col-6 btn btn-lg btn-outline-dark" id="on-off-btn">ON / OFF</button>
+					<button class="col-6 btn btn-lg btn-outline-dark" id="ac-btn">AC</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="7">7</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="8">8</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="9">9</button>
+					<button class="col-3 btn btn-lg btn-outline-dark op" id="divide">/</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="4">4</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="5">5</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="6">6</button>
+					<button class="col-3 btn btn-lg btn-outline-dark op" id="multiply">x</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="1">1</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="2">2</button>
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="3">3</button>
+					<button class="col-3 btn btn-lg btn-outline-dark op" id="subtract">-</button>
+				</div> <!-- .row -->
+				<div class="row">
+					<button class="col-3 btn btn-lg btn-outline-dark num" data-num="0">0</button>
+					<button class="col-3 btn btn-lg btn-outline-dark" data-num="." id="point">.</button>
+					<button class="col-3 btn btn-lg btn-outline-dark" id="equals">=</button>
+					<button class="col-3 btn btn-lg btn-outline-dark op" id="add">+</button>
+				</div> <!-- .row -->
+			</div> <!-- #calculator -->
+		</div> <!-- .row -->
+    </div> <!-- .container -->
+
+    <script>
+        let display = document.querySelector("#display");
+        var string = "0";
+        var num = "";
+        var curr = "0";
+        var nums = document.querySelectorAll(".num");
+        var ops = document.querySelectorAll(".op");
+        var result;
+        var float = false;
+
+        // on/off
+        document.querySelector("#on-off-btn").onclick = onOff;
+        document.body.onkeyup = function(k) {
+            if (k.keyCode == 32) {
+                onOff();
+            }
+        }
+        
+        function onOff() {
+            console.log("onOff() called");
+            if (display.getAttribute("value") == "OFF") {
+                string = "";
+                curr = "0";
+                display.setAttribute("value", curr);
+                display.disabled = false;
+                float = false;
+            } else {
+                display.setAttribute("value", "OFF");
+                display.disabled = true;
+            }
+        }
+
+        // AC
+        document.querySelector("#ac-btn").onclick = function() {
+            console.log("AC called");
+            if (display.disabled == false) {
+                string = "";
+                curr = "0";
+                display.setAttribute("value", curr);
+                float = false;
+            }
+        }
+
+        // click a number
+        var clickNum = function() {
+            console.log("num");
+            if (display.disabled == false) {
+                num = this.innerHTML;
+                if (curr == "0") {
+                    string = "";
+                    curr = "";
+                }
+                if (display.getAttribute("value") == "0") {
+                    curr = num;
+                } else {
+                    curr += num;
+                }
+                string += num;
+                display.setAttribute("value", curr);
+            }
+        }
+
+        for (var i = 0; i < nums.length; i++) {
+            nums[i].onclick = clickNum;
+        }
+
+        // click an operation
+        var clickOp = function() {
+            if (display.disabled == false) {
+                if (string == "") {
+                    alert("Please enter a number first.");
+                } else {
+                    switch (this.innerHTML) {
+                        case "/":
+                            string += "/";
+                            break;
+                        case "x":
+                            string += "*";
+                            break;
+                        case "-":
+                            string += "-";
+                            break;
+                        case "+":
+                            string += "+";
+                            break;
+                    }
+                    if (true) {
+                        curr = "";
+                    }
+                    float = false;
+                }
+            }
+        }
+
+        for (var i = 0; i < ops.length; i++) {
+            ops[i].onclick = clickOp;
+        }
+
+        // click decimal point
+        document.querySelector("#point").onclick = function() {
+            if (display.disabled == false) {
+                if (float == false) {
+                    if (curr == "0") {
+                        string = "";
+                    } else if (curr == "") {
+                        curr += "0";
+                    }
+                    curr += ".";
+                    string += ".";
+                    display.setAttribute("value", curr);
+                    float = true;
+                }
+            }
+        }
+
+        // click equals
+        document.querySelector("#equals").onclick = function() {
+            if (display.disabled == false) {
+                if (string == "") {
+                    alert("Please enter a number first.");
+                } else {
+                    result = eval(string);
+                    display.setAttribute("value", result);
+                    string = result;
+                    curr = "0";
+                    float = false;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

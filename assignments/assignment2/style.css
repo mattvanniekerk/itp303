@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #eeeeee
+}
+
+#store-name {
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#store-name h1 {
+    margin: 0px;
+    font-weight: normal;
+    font-size: 80px;
+}
+
+#main-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    background-color: white;
+    padding-bottom: 50px;
+}
+
+#main-container h2, #main-container h3 {
+    margin: 0px;
+    padding: 40px;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+h3 {
+    font-size: 40px;
+}
+
+#description ul {
+    margin-left: 20px;
+}
+
+#description li {
+    padding: 10px;
+    padding-right: 40px;
+    font-size: 30px;
+}
+
+#product-img {
+    width: 700px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rating-img {
+    margin-left: 20px;
+    width: 300px;
+}
+
+#images {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#related-products img {
+    width: 700px;
+    max-width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+.related-product {
+    width: 80%;
+    padding: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.related-product:hover {
+    cursor: pointer;
+}
+
+.related-product .name {
+    color: white;
+    visibility: hidden;
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.related-product:hover .name {
+    visibility: visible;
+}
+
+.related-product:hover .overlay {
+    visibility: visible;
+}
+
+.overlay{
+	visibility: hidden;
+	background: rgba(36, 36, 36, 0.7);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+    #store-name h1 {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    #description ul {
+        padding-left: 52%;
+    }
+
+    #description li {
+        padding-right: 40px;
+        font-size: 20px;
+    }
+
+    #product-img {
+        float: left;
+        max-width: 50%;
+        margin-right: 40px;
+    }
+
+    #product h2 {
+        display: inline;
+        padding: 0px;
+    }
+
+    #product {
+        padding-top: 20px;
+    }
+
+    #info {
+        display: inline;
+    }
+
+    #info:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+
+    #related-products .related-product {
+        max-width: 46%;
+        display: inline-block;
+    }
+
+    .related-product .name {
+        font-size: 30px;
+    }
+
+    .related-product {
+        margin-right: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    #store-name h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    #description li {
+        padding: 10px;
+        padding-right: 40px;
+        font-size: 15px;
+    }
+
+    #main-container {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #related-products .related-product {
+        max-width: 22%;
+        display: inline-block;
+    }
+
+    .related-product .name {
+        font-size: 20px;
+    }
+}
+

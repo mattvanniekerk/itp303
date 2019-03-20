@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div id="weather" class="page-header">
+                Today's weather in
+                <select id="city">
+                    <option value="1705545">Los Angeles</option>
+                    <option value="6058560">London</option>
+                    <option value="3369157">Cape Town</option>
+                    <option value="1853909">Osaka</option>
+                </select>
+                : <span class="temp">0</span>&deg;F <span class="weather-description">Broken clouds</span>. Feels like <span class="app_temp">0</span>&deg;F.
+            </div>
+            <div id="todo-list">
+                <div id="header">
+                    <h1 class="clear">To-Do List<i id="btn-add" class="fas fa-plus-square"></i></h1>
+                </div>
+                <div id="input">
+                    <input id="new-task" type="text" placeholder="Add to-do item here">
+                </div>
+                <div id="items">
+                    <ul>
+                        <li><i class="far fa-square square"></i>Finish ITP 303 assignment 6</li>
+                        <li><i class="far fa-square square"></i>Email Ouma</li>
+                        <li><i class="far fa-square square"></i>Clean room</li>
+                        <li><i class="far fa-square square"></i>Attain enlightenment</li>
+                    </ul>
+                </div>                
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="js/weather.js"></script>
+        <script src="js/todo-list.js"></script>
+    </body>
+</html>

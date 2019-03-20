@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Film Fanatic</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+<body>
+
+	<div class="container">
+
+		<h1 class="col-12 mt-4">Film Fanatic</h1>
+
+        <form action="" method="" class="col-12" id="search-form">
+            <div class="form-row">
+
+                <div class="col-12 mt-4 col-sm-6 col-lg-4">
+                    <label for="search-id" class="sr-only">Search:</label>
+                    <input type="text" name="" class="form-control" id="search-id" placeholder="Search...">
+                </div>
+
+                <div class="col-12 mt-4 col-sm-auto">
+                    <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+
+            </div> <!-- .form-row -->
+        </form>
+
+        <div class="col-12 mt-4">
+            <p class="num-results"></p>
+        </div>
+        
+        <div class="row">
+            <div class="col col-6 col-md-4 col-lg-3">
+                <div class="image-overlay">
+                    <div class="overlay">
+
+                        <div class="rating">
+                            <p class="rating-text"></p>
+                        </div>
+                        <div class="voters">
+                            <p class="voters-text"></p>
+                        </div>
+                        <div class="description">
+                            <p class="description"></p>
+                        </div>
+
+                    </div> <!-- .overlay -->
+                    <img src="">
+                </div> <!-- .image-overlay -->
+                <h2 class="h2Title"></h2>
+                <h2 class="h2Date"></h2>
+            </div> <!-- .col -->
+        </div> <!-- .row -->
+
+	</div> <!-- .container -->
+
+	
+	<script>
+        ajax("https://api.themoviedb.org/3/movie/now_playing?api_key=3d400f9b57042be48c684c963ff0dd80&language=en-US&page=1", displayResults);
+        
+        function ajax(ep, f) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", ep);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == this.DONE) {
+                    if (xhr.status == 200) {
+                        let resultObjects = JSON.parse(xhr.responseText);
+                        f(resultObjects);
+                    } else {
+                        console.log("AJAX ERROR");
+                        console.log(xhr.status);s
+                    }
+                }
+            }
+        }
+
+		document.querySelector("#search-form").onsubmit = function(e) {
+            e.preventDefault();
+            let searchTermInput = document.querySelector("#search-id").value.trim();
+			let ep = "https://api.themoviedb.org/3/search/movie?api_key=3d400f9b57042be48c684c963ff0dd80&language=en-US&query=" + searchTermInput + "&page=1&include_adult=false";
+            ajax(ep, displayResults);
+        }
+
+		function displayResults(results) {
+            // Clear out old stuff
+			let row = document.querySelector(".row");
+			while(row.hasChildNodes()) {
+				row.removeChild(row.lastChild);
+			}
+
+            // Set results-shown text
+            let pNumResults = "";
+            if (results.total_results > 20) {
+                pNumResults = "Displaying 20 of " + results.total_results + " results.";
+            } else if (results.total_results == 1) {
+                pNumResults = "Displaying " + results.total_results + " result.";
+            } else if (results.total_results == 0) {
+                pNumResults = "No results found."
+            } else {
+                pNumResults = "Displaying " + results.total_results + " result(s).";
+            }
+            document.querySelector(".num-results").innerHTML = pNumResults;
+
+            // Create and display results
+			for (let i = 0; i < results.results.length; i++) {
+                // Declare elements
+                let movieDetail = results.results[i];
+                let divElement = document.createElement("div");
+                let divImageOverlay = document.createElement("div");
+                let divOverlay = document.createElement("div");
+                let divRating = document.createElement("div");
+                let pRating = document.createElement("p");
+                let divVoters = document.createElement("div");
+                let pVoters = document.createElement("p");
+                let divDescription = document.createElement("div");
+                let pDescription = document.createElement("p");
+                let imageElement = document.createElement("img");
+                let h2Title = document.createElement("h2");
+                let h2Date = document.createElement("h2");
+
+                // Set class names
+                divElement.className = "col col-6 col-md-4 col-lg-3";
+                divImageOverlay.className = "image-overlay";
+                divOverlay.className = "overlay";
+                divRating.className = "rating";
+                pRating.className = "rating-text";
+                divVoters.className = "voters";
+                pVoters.className = "voters-text";
+                divDescription.className = "description";
+                pDescription.className = "description-text";
+                imageElement.className = "img-fluid";
+                imageElement.alt = movieDetail.title;
+                h2Title.className = "title";
+                h2Date.className = "date";
+
+                // Build html structure
+                divImageOverlay.appendChild(divOverlay);
+
+                divOverlay.appendChild(divRating);
+                divRating.appendChild(pRating);
+                divOverlay.appendChild(divVoters);
+                divVoters.appendChild(pVoters);
+                divOverlay.appendChild(divDescription);
+                divDescription.appendChild(pDescription);
+
+                divImageOverlay.appendChild(imageElement);
+
+                divElement.appendChild(divImageOverlay);
+                divElement.appendChild(h2Title);
+                divElement.appendChild(h2Date);
+
+                row.appendChild(divElement);
+
+                // Set content
+                pRating.innerHTML = "Rating: " + movieDetail.vote_average;
+                pVoters.innerHTML = "From " + movieDetail.vote_count + " vote(s)";
+                if (movieDetail.overview.length > 200) {
+                    for (let j = 0; j < 200; j++) {
+                        pDescription.innerHTML += movieDetail.overview[j];
+                    }
+                    pDescription.innerHTML += "...";
+                } else {
+                    pDescription.innerHTML = movieDetail.overview;
+                }
+
+                if (movieDetail.poster_path == null) {
+                    imageElement.src = "images/noimageavailable.png";
+                } else {
+                    imageElement.src = "https://image.tmdb.org/t/p/w500" + movieDetail.poster_path;
+                }
+
+                h2Title.innerHTML = movieDetail.title;
+                h2Date.innerHTML = movieDetail.release_date;
+			}
+		}
+	</script>
+</body>
+</html>

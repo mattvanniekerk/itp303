@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Password Validator</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+	<style>
+		.rules {
+			background-color: #FF0;
+			margin:	10px 0px;
+			padding: 10px;
+		}
+		.invalid {
+			background-color: #E00;
+		}
+		.valid {
+			background-color: #0B0;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<h1 class="col-12 text-center mt-5">Password Validator</h1>
+		</div> <!-- .row -->
+
+		<div class="row mt-5">
+			<div class="col-12 col-sm-5">
+				<h3 class="mb-4">Password:</h3>
+				<input type="text" name="" id="password-input" class="form-control">
+			</div>
+
+			<div class="col-12 col-sm-7">
+				<h3 class="mb-4">Validation Rules:</h3>
+				<div class="rules" id="rule1">1: Cannot be empty/blank.</div>
+				<div class="rules" id="rule2">2: Must contain at least 5 characters.</div>
+				<div class="rules" id="rule3">3: Must have at least one special character @ or #.</div>
+				<div class="rules" id="rule4">4: Must contain upper AND lower case characters.</div>
+				<div class="rules" id="rule5">5: Cannot contain word 'password' (case insensitive).</div>
+			</div>
+		</div> <!-- .row -->
+	</div> <!-- .container-fluid -->
+
+	<script>
+		// oninput is an event handler that is detected when user starts typing in something into the input. Use this and the given CSS classes (invalid/valid) to change the background colors of validation rules in real time as users type their password in.
+		document.querySelector("#password-input").oninput = function() {
+            let p = document.querySelector("#password-input").value;
+            let rules = document.querySelectorAll(".rules");
+
+            let patterns = new Array(
+                /./,
+                /.{5,}/,
+                /[@#]+/,
+                /(?=.*[a-z])(?=.*[A-Z])/,
+                /^((?!password).)*$/i
+            )
+
+            for (let i = 0; i < patterns.length; i++) {
+                if (patterns[i].test(p)) {
+                    rules[i].setAttribute("class", "rules valid");
+                } else {
+                    rules[i].setAttribute("class", "rules invalid");
+                }
+            }
+		}
+	</script>
+
+</body>
+</html>

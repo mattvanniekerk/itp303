@@ -1,0 +1,129 @@
+body {
+    padding-top: 56px;
+    background-color: #263238;
+}
+
+h2, h3, p {
+    color: white
+}
+
+.navbar {
+    background-color: #37474F;
+}
+
+.jumbotron {
+    background-image: url("images/geometry.jpg");
+    background-size: cover;
+    background-position: 0% 50%;
+    color: white;
+    text-shadow: 0px 0px 10px #000;
+    text-align: center;
+    border-radius: 0px;
+}
+
+#section1 h2, #section2 h2, #section3 h2 {
+    text-align: center;
+}
+
+.unsplash {
+    background-color: #263238;
+    color: white;
+    text-decoration: none;
+    padding: 4px 6px;
+    font-family:-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2;
+    border-radius: 3px;
+    border: 1px solid white;
+}
+
+hr {
+    border-top: 1px solid #37474F;
+}
+
+img {
+    width: 100% !important;
+}
+
+.founder img {
+    width: 300px !important;
+    height: 300px !important;
+    margin-bottom: 20px;
+}
+
+.flex-item:nth-of-type(1) { order: 2; }
+.flex-item:nth-of-type(2) { order: 1; }
+.flex-item:nth-of-type(3) { order: 4; }
+.flex-item:nth-of-type(4) { order: 3; }
+
+.btn {
+    color: white;
+    background-color: #37474F;
+    margin-bottom: 40px;
+}
+
+.btn:hover {
+    color: #bdbdbd;
+}
+
+#footer {
+    justify-content: space-between;
+    display: inline-block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+#footer p {
+    width: 100%;
+    text-align: center;
+}
+
+#unsplash-links-home {
+    max-width: 438px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#unsplash-links-team {
+    max-width: 115px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tablet Devices */
+@media (min-width: 768px) {
+    #section1 h2, #section3 h2 {
+        text-align: left;
+    }
+
+    #section2 h2, #section2 p {
+        text-align: right;
+    }
+
+    .flex-item:nth-of-type(1) { order: 1; }
+    .flex-item:nth-of-type(2) { order: 2; }
+    .flex-item:nth-of-type(3) { order: 3; }
+    .flex-item:nth-of-type(4) { order: 4; }
+
+    .founder img {
+        width: 200px !important;
+        height: 200px !important;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        margin-bottom: 0px;
+    }
+}
+
+/* Desktop Devices */
+@media (min-width: 992px) {
+    .founder img {
+        width: 300px !important;
+        height: 300px !important;
+        margin-bottom: 20px;
+    }
+}
