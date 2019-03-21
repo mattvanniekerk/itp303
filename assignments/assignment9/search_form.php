@@ -11,6 +11,51 @@
 		echo "MySQL Connection Error: " . $mysqli->connect_errno;
 		exit();
 	}
+
+	// Generate and submit SQL
+	// Store results to display later
+	$sql = "SELECT * FROM genres";
+	$genres = $mysqli->query($sql);
+
+	if (!$genres) {
+		echo "SQL Error: " . $mysqli->error;
+		exit();
+	}
+
+	$sql = "SELECT * FROM ratings";
+	$ratings = $mysqli->query($sql);
+
+	if (!$ratings) {
+		echo "SQL Error: " . $mysqli->error;
+		exit();
+	}
+
+	$sql = "SELECT * FROM labels";
+	$labels = $mysqli->query($sql);
+
+	if (!$labels) {
+		echo "SQL Error: " . $mysqli->error;
+		exit();
+	}
+
+	$sql = "SELECT * FROM formats";
+	$formats = $mysqli->query($sql);
+
+	if (!$formats) {
+		echo "SQL Error: " . $mysqli->error;
+		exit();
+	}
+
+	$sql = "SELECT * FROM sounds";
+	$sounds = $mysqli->query($sql);
+
+	if (!$sounds) {
+		echo "SQL Error: " . $mysqli->error;
+		exit();
+	}
+
+	// Close connection
+	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,24 +96,11 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Genre dropdown options here -->
-						<?php
-							$sql = "SELECT genre FROM genres";
-							$results = $mysqli->query($sql);
+						<?php while ($row = $genres->fetch_assoc()) : ?>
 
-							if (!$results) {
-								echo "SQL Error: " . $mysqli->error;
-								exit();
-							}
+							<option value="<?php echo $row["genre_id"]; ?>"><?php echo $row["genre"]; ?></option>
 
-							while ($row = $results->fetch_assoc()) :
-						?>
-
-						<option value="<?php echo $row["genre"]; ?>"><?php echo $row["genre"]; ?></option>
-
-						<?php 
-							$i++; 
-							endwhile; 
-						?>
+						<?php endwhile; ?>
 
 					</select>
 				</div>
@@ -80,24 +112,11 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Rating dropdown options here -->
-						<?php
-							$sql = "SELECT rating FROM ratings";
-							$results = $mysqli->query($sql);
+						<?php while ($row = $ratings->fetch_assoc()) : ?>
 
-							if (!$results) {
-								echo "SQL Error: " . $mysqli->error;
-								exit();
-							}
+							<option value="<?php echo $row["rating_id"]; ?>"><?php echo $row["rating"]; ?></option>
 
-							while ($row = $results->fetch_assoc()) :
-						?>
-
-						<option value="<?php echo $row["rating"]; ?>"><?php echo $row["rating"]; ?></option>
-
-						<?php 
-							$i++; 
-							endwhile; 
-						?>
+						<?php endwhile; ?>
 
 					</select>
 				</div>
@@ -109,24 +128,11 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Label dropdown options here -->
-						<?php
-							$sql = "SELECT label FROM labels";
-							$results = $mysqli->query($sql);
+						<?php while ($row = $labels->fetch_assoc()) : ?>
 
-							if (!$results) {
-								echo "SQL Error: " . $mysqli->error;
-								exit();
-							}
+							<option value="<?php echo $row["label_id"]; ?>"><?php echo $row["label"]; ?></option>
 
-							while ($row = $results->fetch_assoc()) :
-						?>
-
-						<option value="<?php echo $row["label"]; ?>"><?php echo $row["label"]; ?></option>
-
-						<?php 
-							$i++; 
-							endwhile; 
-						?>
+						<?php endwhile; ?>
 
 					</select>
 				</div>
@@ -138,24 +144,11 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Format dropdown options here -->
-						<?php
-							$sql = "SELECT format FROM formats";
-							$results = $mysqli->query($sql);
+						<?php while ($row = $formats->fetch_assoc()) : ?>
 
-							if (!$results) {
-								echo "SQL Error: " . $mysqli->error;
-								exit();
-							}
+							<option value="<?php echo $row["format_id"]; ?>"><?php echo $row["format"]; ?></option>
 
-							while ($row = $results->fetch_assoc()) :
-						?>
-
-						<option value="<?php echo $row["format"]; ?>"><?php echo $row["format"]; ?></option>
-
-						<?php 
-							$i++; 
-							endwhile; 
-						?>
+						<?php endwhile; ?>
 
 					</select>
 				</div>
@@ -167,24 +160,11 @@
 						<option value="" selected>-- All --</option>
 
 						<!-- Sound dropdown options here -->
-						<?php
-							$sql = "SELECT sound FROM sounds";
-							$results = $mysqli->query($sql);
+						<?php while ($row = $sounds->fetch_assoc()) : ?>
 
-							if (!$results) {
-								echo "SQL Error: " . $mysqli->error;
-								exit();
-							}
+							<option value="<?php echo $row["sound_id"]; ?>"><?php echo $row["sound"]; ?></option>
 
-							while ($row = $results->fetch_assoc()) :
-						?>
-
-						<option value="<?php echo $row["sound"]; ?>"><?php echo $row["sound"]; ?></option>
-
-						<?php 
-							$i++; 
-							endwhile; 
-						?>
+						<?php endwhile; ?>
 
 					</select>
 				</div>
