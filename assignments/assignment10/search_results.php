@@ -19,8 +19,8 @@
 				genres.genre AS genre, 
 				ratings.rating AS rating 
 			FROM dvd_titles
-			JOIN genres USING (genre_id)
-			JOIN ratings USING (rating_id)
+			LEFT JOIN genres USING (genre_id)
+			LEFT JOIN ratings USING (rating_id)
 			WHERE 1=1";
 
 	if ( isset($_GET["title"]) && !empty($_GET["title"]) ) {
@@ -110,6 +110,7 @@
 				<table class="table table-hover table-responsive mt-4">
 					<thead>
 						<tr>
+							<th></th>
 							<th>DVD Title</th>
 							<th>Release Date</th>
 							<th>Genre</th>
@@ -130,7 +131,8 @@
 								<td><?php echo "<a href=\"details.php?dvd_title_id=" 
 												. $row["dvd_title_id"] . "\">" 
 												. $row["title"] . "</a>"; ?></td>
-								<td><?php echo $row["release_date"]; ?></td>
+								<td><?php 
+									echo $row["release_date"]; ?></td>
 								<td><?php echo $row["genre"]; ?></td>
 								<td><?php echo $row["rating"]; ?></td>
 							</tr>

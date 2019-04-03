@@ -1,48 +1,56 @@
 <?php
-	// Establish DB connection
-	$host = "303.itpwebdev.com";
-	$user = "vannieke_db_user";
-	$pass = "BigHac%1996";
-	$db = "vannieke_dvd_db";
+	if( !isset($_GET["dvd_title_id"]) || empty($_GET["dvd_title_id"]) ) 
+	{
+		// Display a nice looking error message to the user
+		$error = "Invalid DVD title ID.";
+	} 
+	else
+	{
+		// Establish DB connection
+		$host = "303.itpwebdev.com";
+		$user = "vannieke_db_user";
+		$pass = "BigHac%1996";
+		$db = "vannieke_dvd_db";
 
-	$mysqli = new mysqli($host, $user, $pass, $db);
+		$mysqli = new mysqli($host, $user, $pass, $db);
 
-	if ($mysqli->connect_errno) {
-		echo "MySQL Connection Error: " . $mysqli->connect_errno;
-		exit();
+		if ($mysqli->connect_errno) {
+			echo "MySQL Connection Error: " . $mysqli->connect_errno;
+			exit();
+		}
+
+		// Generate SQL
+		$sql = "SELECT dvd_titles.dvd_title_id AS dvd_title_id,
+					dvd_titles.title AS title, 
+					dvd_titles.release_date AS release_date, 
+					genres.genre AS genre, 
+					labels.label AS label,
+					ratings.rating AS rating,
+					sounds.sound AS sound,
+					formats.format AS format,
+					dvd_titles.award AS award
+				FROM dvd_titles
+				LEFT JOIN genres USING (genre_id)
+				LEFT JOIN labels USING (label_id)
+				LEFT JOIN ratings USING (rating_id)
+				LEFT JOIN sounds USING (sound_id)
+				LEFT JOIN formats USING (format_id)
+				WHERE dvd_title_id = " . $_GET["dvd_title_id"];
+
+		// Submit SQL
+		// Store results to display later 
+		$results = $mysqli->query($sql);
+
+		if (!$results) {
+			echo "SQL Error: " . $mysqli->error;
+			exit();
+		}
+
+		$details = $results->fetch_assoc();
+
+		// Close connection
+		$mysqli->close();
 	}
-
-	// Generate SQL
-	$sql = "SELECT dvd_titles.dvd_title_id AS dvd_title_id,
-				dvd_titles.title AS title, 
-				dvd_titles.release_date AS release_date, 
-				genres.genre AS genre, 
-				labels.label AS label,
-				ratings.rating AS rating,
-				sounds.sound AS sound,
-				formats.format AS format,
-				dvd_titles.award AS award
-			FROM dvd_titles
-			JOIN genres USING (genre_id)
-			JOIN labels USING (label_id)
-			JOIN ratings USING (rating_id)
-			JOIN sounds USING (sound_id)
-			JOIN formats USING (format_id)
-			WHERE dvd_title_id = " . $_GET["dvd_title_id"];
-
-	// Submit SQL
-	// Store results to display later 
-	$results = $mysqli->query($sql);
-
-	if (!$results) {
-		echo "SQL Error: " . $mysqli->error;
-		exit();
-	}
-
-	$details = $results->fetch_assoc();
-
-	// Close connection
-	$mysqli->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,8 +82,8 @@
 
 				<div class="text-danger font-italic">
 					<?php
-						if (!$results) {
-							echo "SQL Error: " . $mysqli->error;
+						if (isset($error) && !empty($error)) {
+							echo $error;
 						}
 					?>
 				</div>
