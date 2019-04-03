@@ -13,7 +13,8 @@
 	}
 
 	// Generate SQL
-	$sql = "SELECT dvd_titles.title AS title, 
+	$sql = "SELECT dvd_titles.dvd_title_id AS dvd_title_id,
+				dvd_titles.title AS title, 
 				dvd_titles.release_date AS release_date, 
 				genres.genre AS genre, 
 				ratings.rating AS rating 
@@ -41,9 +42,9 @@
 		$sql = $sql . " AND dvd_titles.sound_id = " . $_GET["sound"];
 	}
 
-	if ( $_GET["award"] == "yes" ) {
+	if ( isset($_GET["award"]) && !empty($_GET["award"]) && $_GET["award"] == "yes" ) {
 		$sql = $sql . " AND dvd_titles.award IS NOT NULL";
-	} else if ( $_GET["award"] == "no" ) {
+	} else if ( isset($_GET["award"]) && !empty($_GET["award"]) && $_GET["award"] == "no" ) {
 		$sql = $sql . " AND dvd_titles.award IS NULL";
 	}
 
@@ -119,7 +120,15 @@
 						<!-- Display results -->
 						<?php while ( $row = $results->fetch_assoc() ) : ?>
 							<tr>
-								<td><?php echo $row["title"]; ?></td>
+								<td><?php echo "<a href=\"delete.php?dvd_title_id=" 
+												. $row["dvd_title_id"]
+												. "\" class=\"btn btn-outline-danger\" 
+												onclick=\"return confirm('Are you sure you want to delete this movie?');\">" 
+												. "Delete" 
+												. "</a>"; ?></td>
+								<td><?php echo "<a href=\"details.php?dvd_title_id=" 
+												. $row["dvd_title_id"] . "\">" 
+												. $row["title"] . "</a>"; ?></td>
 								<td><?php echo $row["release_date"]; ?></td>
 								<td><?php echo $row["genre"]; ?></td>
 								<td><?php echo $row["rating"]; ?></td>
