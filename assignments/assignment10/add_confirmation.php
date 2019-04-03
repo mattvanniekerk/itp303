@@ -122,7 +122,7 @@
 					if (isset($error) && !empty($error)) {
 						echo "<div class=\"text-danger font-italic\">" . $error . "</div>";
 					} else {
-						echo "<div class=\"text-success\"><span class=\"font-italic\">Display Title Here</span> was successfully added.\"</div>";
+						echo "<div class=\"text-success\"><span class=\"font-italic\">" . $_POST["title"] . "</span> was successfully added.</div>";
 					}
 				?>
 				
