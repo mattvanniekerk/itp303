@@ -138,6 +138,7 @@
 		<div class="row mt-4 mb-4">
 			<div class="col-12">
 				<a href="search_results.php" role="button" class="btn btn-primary">Back to Search Results</a>
+				<a href=<?php echo "\"edit_form.php?dvd_title_id=" . $_GET["dvd_title_id"] . "\"" ?> role="button" class="btn btn-warning">Edit This DVD</a>
 			</div> <!-- .col -->
 		</div> <!-- .row -->
 	</div> <!-- .container -->

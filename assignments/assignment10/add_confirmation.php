@@ -117,7 +117,6 @@
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-12">
-
 				<?php
 					if (isset($error) && !empty($error)) {
 						echo "<div class=\"text-danger font-italic\">" . $error . "</div>";
@@ -125,9 +124,6 @@
 						echo "<div class=\"text-success\"><span class=\"font-italic\">" . $_POST["title"] . "</span> was successfully added.</div>";
 					}
 				?>
-				
-
-				
 			</div> <!-- .col -->
 		</div> <!-- .row -->
 		<div class="row mt-4 mb-4">
