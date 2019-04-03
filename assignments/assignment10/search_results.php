@@ -124,6 +124,8 @@
 							<tr>
 								<td><?php echo "<a href=\"delete.php?dvd_title_id=" 
 												. $row["dvd_title_id"]
+												. "&title="
+												. $row["title"]
 												. "\" class=\"btn btn-outline-danger\" 
 												onclick=\"return confirm('Are you sure you want to delete this movie?');\">" 
 												. "Delete" 

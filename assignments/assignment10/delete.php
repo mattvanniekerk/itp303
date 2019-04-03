@@ -1,3 +1,41 @@
+<?php
+	if( !isset($_GET["dvd_title_id"]) || empty($_GET["dvd_title_id"])
+		|| !isset($_GET["title"]) || empty($_GET["title"]) ) 
+	{
+		// Display a nice looking error message to the user
+		$error = "Invalid DVD title ID.";
+	} 
+	else 
+	{
+		// Establish DB connection
+		$host = "303.itpwebdev.com";
+		$user = "vannieke_db_user";
+		$pass = "BigHac%1996";
+		$db = "vannieke_dvd_db";
+
+		$mysqli = new mysqli($host, $user, $pass, $db);
+
+		if ($mysqli->connect_errno) {
+			echo "MySQL Connection Error: " . $mysqli->connect_errno;
+			exit();
+		}
+
+		$mysqli->set_charset('utf8');
+		// Generate SQL
+		$sql = "DELETE FROM dvd_titles
+				WHERE dvd_title_id = " . $_GET["dvd_title_id"] . ";";
+		
+		// Submit SQL
+		$results = $mysqli->query($sql);
+
+		if (!$results) {
+			echo "SQL Error: " . $mysqli->error;
+			exit();
+		}
+
+		$mysqli->close();
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +59,13 @@
 	<div class="container">
 		<div class="row mt-4">
 			<div class="col-12">
-
-				<div class="text-danger">
-					Display Error Messages Here.
-				</div>
-
-				<div class="text-success"><span class="font-italic">Title</span> was successfully deleted.</div>
-
+				<?php
+					if (isset($error) && !empty($error)) {
+						echo "<div class=\"text-danger\">" . $error . "</div>";
+					} else {
+						echo "<div class=\"text-success\"><span class=\"font-italic\">" . $_GET["title"] . "</span> was successfully deleted.</div>";
+					}
+				?>
 			</div> <!-- .col -->
 		</div> <!-- .row -->
 		<div class="row mt-4 mb-4">
