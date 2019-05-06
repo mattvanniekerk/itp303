@@ -1,7 +1,109 @@
+body {
+    background-color: #FEFCF8;
+}
+
 .navbar {
     margin-bottom: 20px;
+    background-color: #4D5061;
+    color: white;
+}
+
+.btn-outline-info {
+    color: #FFBC42;
+    border-color: #FFBC42;
+}
+
+.btn-outline-info:hover {
+    color: #4D5061;
+    background-color: #FFBC42;
+    border-color: #FFBC42;
+}
+
+.btn-outline-info:active, .btn-outline-info:focus, .btn-outline-info:active:focus {
+    color: #4D5061 !important;
+    background-color: #FFD486 !important;
+    border-color: #FFD486 !important;
 }
 
 #search {
-    float: right;
+    margin-right: 0.5em;
+}
+
+.btn-outline-primary {
+    color: #3454D1;
+    border-color: #3454D1;
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    background-color: #3454D1;
+    border-color: #3454D1;
+}
+
+.btn-outline-primary:active, .btn-outline-primary:focus, .btn-outline-primary:active:focus {
+    color: white !important;
+    background-color: #5873D9 !important;
+    border-color: #5873D9 !important;
+}
+
+.btn-outline-danger {
+    color: #B6465F;
+    border-color: #B6465F;
+}
+
+.btn-outline-danger:hover {
+    color: white;
+    background-color: #B6465F;
+    border-color: #B6465F;
+}
+
+.btn-outline-danger:active, .btn-outline-danger:focus, .btn-outline-danger:active:focus {
+    color: white !important;
+    background-color: #C3677C !important;
+    border-color: #C3677C !important;
+}
+
+.btn-outline-secondary {
+    color: #4D5061;
+    border-color: #4D5061;
+}
+
+.btn-outline-secondary:hover {
+    color: white;
+    background-color: #4D5061;
+    border-color: #4D5061;
+}
+
+.btn-outline-secondary:active, .btn-outline-secondary:focus, .btn-outline-secondary:active:focus {
+    color: white !important;
+    background-color: #6D6F7D !important;
+    border-color: #6D6F7D !important;
+}
+
+a {
+    color: #3454D1;
+}
+
+a:hover {
+    color: #263E99;
+}
+
+#greeting {
+    color: white;
+}
+
+#greeting:hover {
+    color: #bbbbbb;
+}
+
+p .text-danger {
+    color: green;
+}
+
+.definition-word {
+    color: black;
+}
+
+.definition-word {
+    color: black;
 }
