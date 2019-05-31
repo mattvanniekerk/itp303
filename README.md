@@ -3,6 +3,11 @@ Labs and assignments for ITP 303 at USC in spring 2019.
 
 [Click here to view online.](http://303.itpwebdev.com/~vannieke/student_page.html)
 
+**Final Project**
+* [LexiPro](https://github.com/mattvanniekerk/itp303/tree/master/final)
+* [Final Project Summary](https://github.com/mattvanniekerk/itp303/tree/master/final/Final%20Project%20Summary.pdf)
+* [Final Project - Front-End](https://github.com/mattvanniekerk/itp303/tree/master/final/front-end)
+
 **Labs**
 * [L1: Student Page](https://github.com/mattvanniekerk/itp303/tree/master/labs/lab1)
 * [L2: Simple Photo Gallery](https://github.com/mattvanniekerk/itp303/tree/master/labs/lab2)
