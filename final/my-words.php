@@ -1,12 +1,9 @@
 <?php
 session_start();
 
-$host = "303.itpwebdev.com";
-$user = "vannieke_db_user";
-$pass = "BigHac%1996";
-$db = "vannieke_final_db";
+require("config.php");  // Defines DB_HOST, DB_USER, DB_PASS, and DB_NAME
 
-$mysqli = new mysqli($host, $user, $pass, $db);
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($mysqli->connect_errno) {
     echo "MySQL Connection Error: " . $mysqli->connect_errno;

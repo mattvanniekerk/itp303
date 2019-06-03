@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-define('DB_HOST', '303.itpwebdev.com');
-define('DB_USER', 'vannieke_db_user');
-define('DB_PASS', 'BigHac%1996');
-define('DB_NAME', 'vannieke_final_db');
+require("config.php");  // Defines DB_HOST, DB_USER, DB_PASS, and DB_NAME
 
 if ( isset($_POST['curpassword']) && isset($_POST['newpassword']) ) {
 	if ( empty($_POST['curpassword']) || empty($_POST['newpassword']) ) {
