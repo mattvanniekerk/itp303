@@ -1,8 +1,6 @@
 # ITP 303: Full-Stack Web Development
 Labs and assignments for ITP 303 at USC in spring 2019.
 
-[Click here to view online.](http://303.itpwebdev.com/~vannieke/student_page.html)
-
 **Final Project**
 * [LexiPro](https://github.com/mattvanniekerk/itp303/tree/master/final)
 * [Final Project Summary](https://github.com/mattvanniekerk/itp303/tree/master/final/Final%20Project%20Summary.pdf)
